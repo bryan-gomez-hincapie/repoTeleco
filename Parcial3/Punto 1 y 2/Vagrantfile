@@ -1,0 +1,18 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+	config.vm.define :vm1 do |vm1|
+		vm1.vm.box = "bento/centos-7.8"
+		vm1.vm.network :private_network, ip: "192.168.50.10"
+		vm1.vm.network :public_network, ip: "192.168.10.213"
+		vm1.vm.hostname = "vm1"
+		vm1.vm.provision "shell", path: "vm1.sh"
+	end
+
+	config.vm.define :vm2 do |vm2|
+		vm2.vm.box = "bento/centos-7.8"
+		vm2.vm.network :private_network, ip: "192.168.50.20"
+		vm2.vm.hostname = "vm2"
+		vm2.vm.provision "shell", path: "vm2.sh"
+	end
+end
